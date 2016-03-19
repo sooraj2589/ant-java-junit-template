@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<project name="ant-java-junit-template" default="test">
+
+  <property name="src.dir" location="src"/>
+  <property name="test.dir" location="test"/>
+  <property name="build.dir" location="build"/>
+
+  <!-- Path for required jars to run the JUnit tests, and the dir the build tests are -->
+  <path id="junit.classpath">
+    <pathelement location="lib/junit4.jar"/>
+    <pathelement location="lib/hamcrest-all-1.3.jar"/>
+    <pathelement location="${build.dir}"/>
+  </path>
+
+  <!-- Create the build directory for the built files -->
+  <target name="init" depends="clean">
+    <mkdir dir="${build.dir}"/>
+  </target>
+
+  <!-- Compile the source code into build directory -->
+  <target name="compileSrc" depends="init" description="Compile source code">
+    <javac srcdir="${src.dir}" destdir="${build.dir}" includeantruntime="no"/>
+    <echo message="Source code compiled."/>
+  </target>
+
+  <!-- Compile test cases into build directory -->
+  <target name="compileTest" depends="compileSrc" description="Compile JUnit test cases">
+    <javac srcdir="${test.dir}" destdir="${build.dir}" includeantruntime="no">
+        <classpath refid="junit.classpath"/>
+    </javac>
+    <echo message="Test cases compiled."/>
+  </target>
+
+  <!-- Run the compiled tests and generate reports -->
+  <target name="test" depends="compileTest">
+    <junit printsummary="yes" haltonfailure="yes" haltonerror="yes">
+        <classpath refid="junit.classpath"/>
+
+        <formatter type="plain"/>
+
+        <batchtest>
+            <fileset dir="${build.dir}">
+                <include name="**/*Test*"/>
+            </fileset>
+        </batchtest>
+
+    </junit>
+  </target>
+
+  <!-- Delete build directory and its content, and test reports -->
+  <target name="clean">
+    <delete dir="${build}"/>
+    <delete>
+        <fileset dir="." includes="TEST-*"/>
+    </delete>
+    <echo message="Previous builds and test reports cleaned."/>
+  </target>
+
+</project>
