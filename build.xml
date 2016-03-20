@@ -37,7 +37,7 @@
 
   <!-- Run the compiled tests and generate reports -->
   <target name="test" depends="compileTest" description="Run JUnit tests">
-    <junit printsummary="yes" haltonfailure="yes" haltonerror="yes">
+    <junit printsummary="yes" haltonfailure="yes" haltonerror="yes" fork="yes">
         <classpath refid="junit.classpath"/>
 
         <formatter type="plain"/>
