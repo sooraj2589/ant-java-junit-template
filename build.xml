@@ -5,8 +5,11 @@
   <property name="test.dir" location="test"/>
   <property name="build.dir" location="build"/>
   <property name="reports.dir" location="${build.dir}/reports"/>
+  <property name="junit.reports.dir" location="${reports.dir}/junit"/>
+  <property name="checkstyle.reports.dir" location="${reports.dir}/checkstyle"/>
   <property name="checkstyle.config" value="/google_checks.xml"/>
 
+  <!-- "checkstyle" task definition -->
   <taskdef resource="com/puppycrawl/tools/checkstyle/ant/checkstyle-ant-task.properties"
          classpath="lib/checkstyle-6.16-all.jar"/>
 
@@ -21,6 +24,8 @@
   <target name="init" depends="clean">
     <mkdir dir="${build.dir}"/>
     <mkdir dir="${reports.dir}"/>
+    <mkdir dir="${junit.reports.dir}"/>
+    <mkdir dir="${checkstyle.reports.dir}"/>
   </target>
 
   <!-- Compile the source code into build directory -->
@@ -45,7 +50,7 @@
         <formatter type="plain"/>
         <formatter type="xml"/>
 
-        <batchtest todir="${reports.dir}">
+        <batchtest todir="${junit.reports.dir}">
             <fileset dir="${build.dir}">
                 <include name="**/*Test*"/>
             </fileset>
@@ -60,7 +65,8 @@
       <fileset dir="${src.dir}">
       	<include name="**/*.java"/>
       </fileset>
-      <formatter type="plain"/>
+      <formatter type="plain" tofile="${checkstyle.reports.dir}/checkstyle-results.txt"/>
+      <formatter type="xml" tofile="${checkstyle.reports.dir}/checkstyle-results.xml"/>
     </checkstyle>
   </target>
 
