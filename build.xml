@@ -1,9 +1,10 @@
 <?xml version="1.0"?>
-<project name="ant-java-junit-template" default="test" basedir=".">
+<project name="ant-java-junit-template" default="checkstyle" basedir=".">
 
   <property name="src.dir" location="src"/>
   <property name="test.dir" location="test"/>
   <property name="build.dir" location="build"/>
+  <property name="reports.dir" location="${build.dir}/reports"/>
   <property name="checkstyle.config" value="/google_checks.xml"/>
 
   <taskdef resource="com/puppycrawl/tools/checkstyle/ant/checkstyle-ant-task.properties"
@@ -16,9 +17,10 @@
     <pathelement location="${build.dir}"/>
   </path>
 
-  <!-- Create the build directory for the built files -->
+  <!-- Create the build directory for the built files and reports -->
   <target name="init" depends="clean">
     <mkdir dir="${build.dir}"/>
+    <mkdir dir="${reports.dir}"/>
   </target>
 
   <!-- Compile the source code into build directory -->
@@ -41,8 +43,9 @@
         <classpath refid="junit.classpath"/>
 
         <formatter type="plain"/>
+        <formatter type="xml"/>
 
-        <batchtest>
+        <batchtest todir="${reports.dir}">
             <fileset dir="${build.dir}">
                 <include name="**/*Test*"/>
             </fileset>
