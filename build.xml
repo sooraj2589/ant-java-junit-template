@@ -71,7 +71,7 @@
     </target>
 
     <target name="test" depends="init,compile" description="Run the JUnit tests.">
-        <junit fork="yes" dir="${basedir}" failureProperty="test.failed">
+        <junit fork="yes" dir="${basedir}" failureProperty="test.failed" haltonfailure="yes">
             <!--
 				Note the classpath order: instrumented classes are before the
 				original (uninstrumented) classes.  This is important.
