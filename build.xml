@@ -4,6 +4,10 @@
   <property name="src.dir" location="src"/>
   <property name="test.dir" location="test"/>
   <property name="build.dir" location="build"/>
+  <property name="checkstyle.config" value="/google_checks.xml"/>
+
+  <taskdef resource="com/puppycrawl/tools/checkstyle/ant/checkstyle-ant-task.properties"
+         classpath="lib/checkstyle-6.16-all.jar"/>
 
   <!-- Path for required jars to run the JUnit tests, and the dir the build tests are -->
   <path id="junit.classpath">
@@ -32,7 +36,7 @@
   </target>
 
   <!-- Run the compiled tests and generate reports -->
-  <target name="test" depends="compileTest">
+  <target name="test" depends="compileTest" description="Run JUnit tests">
     <junit printsummary="yes" haltonfailure="yes" haltonerror="yes">
         <classpath refid="junit.classpath"/>
 
@@ -47,9 +51,19 @@
     </junit>
   </target>
 
+  <!-- Check source code style -->
+  <target name="checkstyle" depends="test" description="Check code style with 'checkstyle'">
+    <checkstyle config="${checkstyle.config}">
+      <fileset dir="${src.dir}">
+      	<include name="**/*.java"/>
+      </fileset>
+      <formatter type="plain"/>
+    </checkstyle>
+  </target>
+
   <!-- Delete build directory and its content, and test reports -->
   <target name="clean">
-    <delete includeemptydirs="true">
+    <delete includeemptydirs="true" failonerror="false">
         <fileset dir="${build.dir}">
           <include name="**/**"/>
         </fileset>
