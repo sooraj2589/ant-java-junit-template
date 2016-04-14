@@ -1,0 +1,6 @@
+{
+  "name": "Ant, Java, JUnit, Checkstyle and Cobertura template",
+  "tagline": "An Ant build template for Java projects, integrated with JUnit, Checkstyle and Cobertura",
+  "body": "# Ant, Java, JUnit, Cobertura and Checkstyle build template\r\n\r\nWriting build files can be tedious. Especially if it is something you are not familiar with, or just if you want to start writing code as soon as possible, and you do not have time for other things.\r\n\r\nThe purpose of this template is to provide a complete build process for Java projects, using Apache Ant as build system. Copy it, change the project name in the build file, and that's all.\r\n\r\nIf you are thinking to use a Continuous Integration system for your Java project, this is what you have been looking for. And, if you were not thinking in Continuous Integration, now you have the chance to start it, having almost all the work done.\r\n\r\nThis template includes the following software engineering practices automated in the build process:\r\n* Unit testing, with JUnit.\r\n* Coverage analysis, with Cobertura.\r\n* Code style validation, with Checkstyle.\r\n",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
