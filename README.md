@@ -1,7 +1,7 @@
 Ant-Java-JUnit-Coverage-Checkstyle build template
 =================================================
 
-![Build status](https://julen-ci.com/jenkins/job/ant-java-junit-template/badge/icon) ![Tests](https://img.shields.io/jenkins/t/https/julen-ci.com/jenkins/ant-java-junit-template.svg) ![Coverage](https://img.shields.io/jenkins/c/https/julen-ci.com/jenkins/ant-java-junit-template.svg)
+![Build status](https://img.shields.io/jenkins/s/http/julenpardo.com/jenkins/ant-java-junit-coverage-checkstyle-template.svg) ![Tests](https://img.shields.io/jenkins/t/http/julenpardo.com/jenkins/ant-java-junit-coverage-checkstyle-template.svg) ![Coverage](https://img.shields.io/jenkins/c/http/julenpardo.com/jenkins/ant-java-junit-coverage-checkstyle-template.svg)
 
 This template is designed for building Java projects with Apache Ant, including the following software engineering practices automated in the build:
 
