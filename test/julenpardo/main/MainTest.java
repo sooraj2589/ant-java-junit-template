@@ -18,7 +18,7 @@ public class MainTest {
 
     @Test
     public void failingTest() {
-        // assertTrue(false); // Uncomment this to make the build fail.
+         assertTrue(false); // Uncomment this to make the build fail.
     }
 }
 
